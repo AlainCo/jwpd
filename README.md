@@ -1,5 +1,5 @@
 # jwpd
-Windows Portable DEvice API on Java
+Windows Portable Device API on Java
 
 Status
 ======
