@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>fr.alainco.jwpd</groupId>
+		<artifactId>jwpd-root</artifactId>
+		<version>${revision}</version>
+	</parent>
+	<artifactId>jwpd-interface</artifactId>
+	<packaging>jar</packaging>
+	<name>Java Windows Portable Device COM interface</name>
+	<description>interface mapping to WPD COM objects</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<!-- <portabledeviceapi.dll>${SYSTEMROOT}/System32/PortableDeviceApi.dll</portabledeviceapi.dll> -->
+	</properties>
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.jvnet.com4j/com4j -->
+		<dependency>
+			<groupId>org.jvnet.com4j</groupId>
+			<artifactId>com4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jvnet.com4j</groupId>
+				<artifactId>maven-com4j-plugin</artifactId>
+				<configuration>
+					<!-- <file>${portabledeviceapi.dll}</file> -->
+					<libId>1F001332-1A57-4934-BE31-AFFC99F4EE0A</libId>
+					<package>fr.alainco.jwpd</package>
+				</configuration>
+				<executions>
+					<execution>
+						<id>wpd-generation</id>
+						<goals>
+							<goal>gen</goal>
+						</goals>
+						<phase>generate-sources</phase>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
