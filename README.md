@@ -1,4 +1,4 @@
-# jwpd
+# jWPD
 Windows Portable Device API on Java
 
 Status
